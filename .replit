@@ -3,7 +3,23 @@ run = "gcc -o hello /home/runner/project2/src/hello.c"
 modules = ["c-clang14"]
 
 [deployment]
-run = ["sh", "-c", "gcc -o hello /home/runner/project2/src/hello.c"]
+run = ["sh", "-c", "gcc -o hello /home/runner/project2/src/main.c"]
 
 [nix]
 channel = "stable-24_05"
+
+[workflows]
+runButton = "Build and Run"
+
+[[workflows.workflow]]
+name = "Build and Run"
+author = 40784048
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "gcc -o labrabota3-1 src/main.c"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "./labrabota3-1"
